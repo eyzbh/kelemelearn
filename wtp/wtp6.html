@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Details - Kelem Online Learning</title>
+  <link rel="stylesheet" href="wtp6.css">
+</head>
+<body>
+  <header>
+    <h1>Course Details</h1>
+  </header>
+
+  <main>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <h2>Introduction to Business</h2>
+        <ul>
+          <li onclick="loadChapter('chapter1')">Chapter 1: Economics</li>
+          <li onclick="loadChapter('chapter2')">Chapter 2: Business Adminstration</li>
+          <li onclick="loadChapter('chapter3')">Chapter 3: Enterpreneurship</li>
+        </ul>
+      </nav>
+
+      <div class="main-content">
+        <section id="description">
+          <h3>Description</h3>
+          <p>Learn the basics business skills.</p>
+        </section>
+
+        <section id="chapter-content">
+          <h3>Chapter Content</h3>
+          <iframe id="chapterIframe" style="width: 100%; height: 400px;" src=""></iframe>
+        </section>
+
+        <div class="videos">
+          <h3>Video</h3>
+          <iframe width="677" height="391" src="https://www.youtube.com/embed/MZqx-wWNrZ4" title="What is business?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <div class="resources">
+          <h3>Resources</h3>
+            <div class="book-link">
+              <img src="busin.jfif" alt="Business">
+              <button class="download-btn" onclick="downloadBook('Business')">Download</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function downloadBook(bookName) {
+      alert(bookName + ' downloaded successfully!');
+    }
+
+    function loadChapter(chapter) {
+      var iframe = document.getElementById('chapterIframe');
+      const paragraphs = {
+        chapter1: '<p>Economics focuses on the behaviour and interactions of economic agents and how economies work. Microeconomics analyses what is viewed as basic elements within economies, including individual agents and markets, their interactions, and the outcomes of interactions. Individual agents may include, for example, households, firms, buyers, and sellers. Macroeconomics analyses economies as systems where production, distribution, consumption, savings, and investment expenditure interact, and factors affecting it: factors of production, such as labour, capital, land, and enterprise, inflation, economic growth, and public policies that have impact on these elements. It also seeks to analyse and describe the global economy. </p>',
+        chapter2: '<p>Business administration is the administration of a commercial enterprise.[1] It includes all aspects of overseeing and supervising the business operations of an organization. </p>',
+        chapter3: '<p>Entrepreneurship is the creation or extraction of economic value in ways that generally entail beyond the minimal amount of risk (assumed by a traditional business), and potentially involving values besides simply economic ones. </p>',
+      };
+      var blob = new Blob([paragraphs[chapter]], { type: 'text/html' });
+      iframe.src = URL.createObjectURL(blob);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Kelem Online</title> 
+  <link rel="stylesheet" href="wtp.css"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" /> 
+</head> 
+<body> 
+  <header> 
+    <img src="lo3.webp" alt="Kelem Logo" class="logo"> 
+    <h1>Kelem Online Learning</h1> 
+  </header> 
+  <div class="video-background"> 
+    <video autoplay muted loop id="background-video"> 
+      <source src="/backF.mp4" type="video/mp4"> 
+    </video> 
+  </div> 
+ 
+  <main> 
+    <section class="hero"> 
+      <h2>Learn New Skills Online</h2> 
+      <p>Explore a Wide range of courses and start your learning journey today</p> 
+    </section> 
+ 
+    <section class="login-signup"> 
+      <div class="login-container"> 
+        <h3>Log In</h3> 
+        <button class="google-button" onclick="handleGoogleLogin()"> 
+          <i class="fab fa-google"></i> Continue with Google 
+        </button> 
+        <p>or</p> 
+        <form id="login-form"> 
+          <input type="email" id="login-email" placeholder="Email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Please enter a valid email address." /> 
+          <p1 id="login-email-error" style="color:red; display:none;">Please enter a valid email address.</p1> 
+          <input type="password" id="login-password" placeholder="Password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" title="Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character." /> 
+          <p1 id="login-password-error" style="color:red; display:none;">Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.</p1> 
+          <button type="button" onclick="login()">Log In</button> 
+        </form> 
+        <p1 id="login-error" style="color:red; display:none;">Please sign up first to log in.</p1> 
+      </div> 
+      <div class="signup-container"> 
+        <h3>Sign Up</h3> 
+        <button class="google-button" onclick="handleGoogleSignup()"> 
+          <i class="fab fa-google"></i> Continue with Google 
+        </button> 
+        <p>or</p> 
+        <form id="signup-form"> 
+          <input type="text" id="signup-name" placeholder="Name" required pattern="^[a-zA-Z\s]+$" title="Name can only contain letters and spaces." /> 
+          <p1 id="signup-name-error" style="color:red; display:none;">Name can only contain letters and spaces.</p1> 
+          <input type="email" id="signup-email" placeholder="Email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Please enter a valid email address." /> 
+          <p1 id="signup-email-error" style="color:red; display:none;">Please enter a valid email address.</p1> 
+          <input type="password" id="signup-password" placeholder="Password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" title="Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character." /> 
+          <p1 id="signup-password-error" style="color:red; display:none;">Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.</p1> 
+          <button type="button" onclick="signup()">Sign Up</button> 
+        </form> 
+      </div> 
+    </section> 
+  </main> 
+   
+  <footer> 
+    <div class="footer-content"> 
+      <div class="about-us"> 
+        <h4>About Us:</h4> 
+        <p1>We are a leading online learning platform dedicated to providing high-quality courses and educational resources.</p1> 
+      </div> 
+      <div class="contact-us"> 
+        <h4>Contact Us:</h4> 
+        <p1>Email: info@kelemonline.com</p1> 
+        <p1>Phone:2519-86173-149
+       </p1> 
+      </div> 
+    </div> 
+    <div class="social-icons"> 
+      <a href="#" class="social-icon" data-url="https://www.facebook.com/yourpage"> 
+        <i class="fab fa-facebook-f"></i> 
+      </a> 
+      <a href="#" class="social-icon" data-url="https://twitter.com/yourpage"> 
+        <i class="fab fa-twitter"></i> 
+      </a> 
+      <a href="#" class="social-icon" data-url="https://www.instagram.com/yourpage"> 
+        <i class="fab fa-instagram"></i> 
+      </a> 
+      <a href="#" class="social-icon" data-url="https://www.linkedin.com/company/yourpage"> 
+        <i class="fab fa-linkedin-in"></i> 
+      </a> 
+    </div> 
+  </footer> 
+ 
+  <script> 
+    // Simulate user database 
+    const users = []; 
+ 
+    function signup() { 
+      const name = document.getElementById('signup-name'); 
+      const email = document.getElementById('signup-email'); 
+      const password = document.getElementById('signup-password'); 
+      let isValid = true; 
+ 
+      // Check name 
+      if (!name.validity.valid) { 
+        document.getElementById('signup-name-error').style.display = 'block'; 
+        isValid = false; 
+      } else { 
+        document.getElementById('signup-name-error').style.display = 'none'; 
+      } 
+ 
+      // Check email 
+      if (!email.validity.valid) { 
+        document.getElementById('signup-email-error').style.display = 'block'; 
+        isValid = false; 
+      } else { 
+        document.getElementById('signup-email-error').style.display = 'none'; 
+      } 
+ 
+      // Check password 
+      if (!password.validity.valid) { 
+        document.getElementById('signup-password-error').style.display = 'block'; 
+        isValid = false; 
+      } else { 
+        document.getElementById('signup-password-error').style.display = 'none'; 
+      } 
+ 
+      if (isValid) { 
+        // Add the user to the database 
+        users.push({ name: name.value, email: email.value, password: password.value }); 
+ 
+        // Clear the form fields 
+        name.value = ''; 
+        email.value = ''; 
+        password.value = ''; 
+ 
+        alert('Sign up successful! You can now log in.'); 
+      } 
+    } 
+ 
+    function login() { 
+      const email = document.getElementById('login-email'); 
+      const password = document.getElementById('login-password'); 
+      let isValid = true; 
+ 
+      // Check email 
+      if (!email.validity.valid) { 
+        document.getElementById('login-email-error').style.display = 'block'; 
+        isValid = false; 
+      } else { 
+        document.getElementById('login-email-error').style.display = 'none'; 
+      } 
+ 
+      // Check password 
+      if (!password.validity.valid) { 
+        document.getElementById('login-password-error').style.display = 'block'; 
+        isValid = false; 
+      } else { 
+        document.getElementById('login-password-error').style.display = 'none'; 
+      } 
+ 
+      if (isValid) { 
+        // Check if the user is registered 
+        const user = users.find(u => u.email === email.value && u.password === password.value); 
+        if (user) { 
+          // Redirect to wtp2.html 
+          window.location.href = 'wtp2.html'; 
+        } else { 
+          // Display the "Please sign up first to log in" message 
+          document.getElementById('login-error').style.display = 'block'; 
+        } 
+      } 
+    } 
+ 
+    function handleGoogleLogin() { 
+      // Add your Google Sign-In logic here 
+      alert("Google login not implemented"); 
+    } 
+ 
+    function handleGoogleSignup() { 
+      // Add your Google Sign-Up logic here 
+      alert("Google sign-up not implemented"); 
+    } 
+ 
+    document.querySelectorAll('.social-icon').forEach(icon => { 
+      icon.addEventListener('click', () => { 
+        const url = icon.getAttribute('data-url'); 
+        window.open(url, '_blank'); 
+      }); 
+    }); 
+  </script> 
+</body> 
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Details - Kelem Online Learning</title>
+  <link rel="stylesheet" href="wtp4.css">
+</head>
+<body>
+  <header>
+    <h1>Course Details</h1>
+  </header>
+
+  <main>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <h2>Introduction to Literature</h2>
+        <ul>
+          <li onclick="loadChapter('chapter1')">Chapter 1: Introduction to Literature</li>
+          <li onclick="loadChapter('chapter2')">Chapter 2: Basic Writing</li>
+          <li onclick="loadChapter('chapter3')">Chapter 3: Grammar</li>
+          <li onclick="loadChapter('chapter4')">Chapter 4: Plot</li>
+        </ul>
+      </nav>
+
+      <div class="main-content">
+        <section id="description">
+          <h3>Description</h3>
+          <p>Learn the basics of Literature. This course covers fundamental Literature concepts.</p>
+        </section>
+
+        <section id="chapter-content">
+          <h3>Chapter Content</h3>
+          <iframe id="chapterIframe" style="width: 100%; height: 400px;" src=""></iframe>
+        </section>
+
+        <div class="videos">
+          <h3>Video</h3>
+          <iframe width="100%" height="400" src="https://www.youtube.com/embed/S4i8PVY2B38" title="Introduction to Literature" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+        <div class="resources">
+          <h3>Resources</h3>
+          <div class="book-link">
+            <img src="lit.jpg" alt="Literature">
+            <button class="download-btn" onclick="downloadBook('Literature')">Download</button>
+          </div>
+          <div class="book-link">
+            <img src="lit2.jpg" alt="Advanced Literature">
+            <button class="download-btn" onclick="downloadBook('Advanced Literature')">Download</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function downloadBook(bookName) {
+      alert(bookName + ' downloaded successfully!');
+    }
+
+    function loadChapter(chapter) {
+      var iframe = document.getElementById('chapterIframe');
+      const paragraphs = {
+        chapter1: '<p> Literature is any collection of written work, but it is also used more narrowly for writings specifically considered to be an art form, especially novels, plays, and poems.[1] It includes both print and digital writing.[2] In recent centuries, the definition has expanded to include oral literature, much of which has been transcribed.[3][4] Literature is a method of recording, preserving, and transmitting knowledge and entertainment. It can also have a social, psychological, spiritual, or political role.</p>',
+        chapter2: '<p> BW can refer to both a type of composition course and a field of study. The term "basic writing" was coined by Mina Shaughnessy, a pioneer in the field, to distinguish it from previous terms like "bonehead" or "remedial". BW courses are designed to teach formal written standard English to students deemed un(der)prepared for first-year composition. Despite documented concerns[1] about the ability of multiple-choice and impromptu timed-writing examinations to predict performance on authentic writing tasks, institutions of higher education typically enroll students in BW courses based on standardized or placement test scores, with standards varying by institution.</p>',
+        chapter3: '<p> grammar is the set of rules for how a natural language is structured, as demonstrated by its speakers or writers. Grammar rules may concern the use of clauses, phrases, and words. The term may also refer to the study of such rules, a subject that includes phonology, morphology, and syntax, together with phonetics, semantics, and pragmatics. There are, broadly speaking, two different ways to study grammar: traditional grammar and theoretical grammar. </p>',
+        chapter4: '<p> plot is a scheme, a story, a map charting progress, or a piece of land (as for a garden). To plot is to devise a secret plan, order the events of the story </p>'
+      };
+      var blob = new Blob([paragraphs[chapter]], { type: 'text/html' });
+      iframe.src = URL.createObjectURL(blob);
+    }
+  </script>
+</body>
+</html>

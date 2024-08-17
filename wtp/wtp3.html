@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment - kelem online learning</title>
+  <link rel="stylesheet" href="wtp3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+  <header>
+    <h1>Payment</h1>
+  </header>
+  <div class="video-background">
+    <video autoplay muted loop id="background-video2">
+      <source src="cardvid.mp4" type="video/mp4">
+    </video>
+    </div>
+
+  <main>
+    <section class="payment-container">
+      <div class="payment-options">
+        <button id="credit-card-btn" class="active">Credit Card</button>
+        <img src="card.png" alt="Credit Card" />
+       <button id="bank-transfer-btn">Bank Transfer</button>
+       <img src="bank.jpg" alt="Bank Transfer" />
+      </div>
+
+      <div class="payment-form active" id="credit-card-form">
+        <h2>Enter Payment Details</h2>
+        <form id="payment-form">
+          <label for="name">Name on Card:</label>
+          <input type="text" id="name" placeholder="Enter your name" pattern="^[a-zA-Z\s]+$" required>
+          <label for="card-number">Card Number:</label>
+          <input type="text" id="card-number" placeholder="Enter your card number" pattern="^[0-9]{16}$" required>
+          <label for="expiration-date">Expiration Date:</label>
+          <input type="text" id="expiration-date" placeholder="MM/YY" pattern="^(0[1-9]|1[0-2])\/[0-9]{2}$" required>
+          <label for="cvv">CVV:</label>
+          <input type="text" id="cvv" placeholder="Your CVV" pattern="^[0-9]{3,4}$" required>
+          <label for="ammountInput1">Amount:</label>
+          <input type="number" id="ammountInput1" placeholder="Enter amount" pattern="[0-9]{3,4}$" required>
+          <button type="button" onclick="processPayment('credit-card')">Pay Now</button>
+        </form>
+      </div>
+
+      <div class="payment-form" id="bank-transfer-form">
+        <h2>Bank Transfer Details</h2>
+        <p>Please transfer the payment to the following bank account:</p>
+        <p>Account Name: Kelem Online Learning</p>
+        <p>Bank Name: CBE Bank</p>
+        <p>Account Number: 10002345678</p>
+        <p>SWIFT Code: CBETETAA</p>
+        <label for="ammountInput2">Amount:</label>
+        <input type="number" id="ammountInput2" placeholder="Enter amount" pattern="[0-9]{3,4}$" required>
+        <button type="button" onclick="processPayment('bank-transfer')">Confirm Bank Transfer</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="about-us">
+        <h3>About Us</h3>
+        <p>We are a leading online learning platform dedicated to providing high-quality courses and educational resources.</p>
+      </div>
+      <div class="contact-us">
+        <h3>Contact Us</h3>
+        <p>Email: info@kelemonline.com</p>
+        <p>Phone: +2519-86-17-31-49</p>
+      </div>
+    </div>
+    <div class="social-icons">
+      <a href="#" class="social-icon" data-url="https://www.facebook.com/yourpage">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="#" class="social-icon" data-url="https://twitter.com/yourpage">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="#" class="social-icon" data-url="https://www.instagram.com/yourpage">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="#" class="social-icon" data-url="https://www.linkedin.com/company/yourpage">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    const creditCardBtn = document.getElementById('credit-card-btn');
+    const bankTransferBtn = document.getElementById('bank-transfer-btn');
+    const creditCardForm = document.getElementById('credit-card-form');
+    const bankTransferForm = document.getElementById('bank-transfer-form');
+
+    creditCardBtn.addEventListener('click', () => {
+      creditCardBtn.classList.add('active');
+      bankTransferBtn.classList.remove('active');
+      creditCardForm.classList.add('active');
+      bankTransferForm.classList.remove('active');
+    });
+
+    bankTransferBtn.addEventListener('click', () => {
+      bankTransferBtn.classList.add('active');
+      creditCardBtn.classList.remove('active');
+      bankTransferForm.classList.add('active');
+      creditCardForm.classList.remove('active');
+    });
+
+    function processPayment(paymentMethod) {
+      let ammountInput;
+
+      if(paymentMethod == 'credit-card') {
+        ammountInput = document.getElementById('ammountInput1');
+      }
+      else {
+        ammountInput = document.getElementById('ammountInput2');
+      }
+
+      let ammount = ammountInput.value;
+
+      if (paymentMethod === 'credit-card') {
+        // Get the form data
+        const nameOnCard = document.getElementById('name').value;
+        const cardNumber = document.getElementById('card-number').value;
+        const expirationDate = document.getElementById('expiration-date').value;
+        const cvv = document.getElementById('cvv').value;
+
+        // Perform payment processing logic here
+
+      }
+
+      if(ammount == 99) {
+        alert("payment successful! You can now start attending the course.");
+
+        window.location.href = 'wtp4.html';
+      }else if(ammount == 199) {
+        alert(" payment successful! You can now start attending the course.");
+
+        window.location.href = 'wtp5.html';
+      }else if(ammount == 299) {
+        alert("payment successful! You can now start attending the course.");
+
+        window.location.href = 'wtp6.html';
+      } else {
+        window.location.href = 'wtp404.html';
+      }
+    }
+  document.querySelectorAll('.social-icon').forEach(icon => {
+  icon.addEventListener('click', () => {
+    const url = icon.getAttribute('data-url');
+    window.open(url, '_blank');
+  });
+});
+  </script>
+</body>
+</html>

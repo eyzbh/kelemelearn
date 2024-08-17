@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Details - Kelem Online Learning</title>
+  <link rel="stylesheet" href="wtp5.css">
+</head>
+<body>
+  <header>
+    <h1>Course Details</h1>
+  </header>
+
+  <main>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <h2>Introduction to Literature</h2>
+        <ul>
+          <li onclick="loadChapter('chapter1')">Chapter 1: Programming</li>
+          <li onclick="loadChapter('chapter2')">Chapter 2: Dta structure</li>
+          <li onclick="loadChapter('chapter3')">Chapter 3: Web Tech</li>
+      </nav>
+
+      <div class="main-content">
+        <section id="description">
+          <h3>Description</h3>
+          <p>Learn the basics skills of Technology.</p>
+        </section>
+
+        <section id="chapter-content">
+          <h3>Chapter Content</h3>
+          <iframe id="chapterIframe" style="width: 100%; height: 400px;" src=""></iframe>
+        </section>
+
+        <div class="videos">
+          <h3>Video</h3>
+          <iframe width="677" height="391" src="https://www.youtube.com/embed/k_RtS3sag1Y" title="What is Technology?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <div class="resources">
+          <h3>Resources</h3>
+          <div class="book-link">
+            <div class="book-link">
+              <img src="tech.jpg" alt="Tech">
+              <button class="download-btn" onclick="downloadBook('Technology')">Download</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function downloadBook(bookName) {
+      alert(bookName + ' downloaded successfully!');
+    }
+
+    function loadChapter(chapter) {
+      var iframe = document.getElementById('chapterIframe');
+      const paragraphs = {
+        chapter1: '<p>Computer programming or coding is the composition of sequences of instructions, called programs, that computers can follow to perform tasks.[1][2] It involves designing and implementing algorithms, step-by-step specifications of procedures, by writing code in one or more programming languages. Programmers typically use high-level programming languages that are more easily intelligible to humans than machine code, which is directly executed by the central processing unit. Proficient programming usually requires expertise in several different subjects, including knowledge of the application domain, details of programming languages and generic code libraries, specialized algorithms, and formal logic.</p>',
+        chapter2: '<p>Data structures provide a means to manage large amounts of data efficiently for uses such as large databases and internet indexing services. Usually, efficient data structures are key to designing efficient algorithms. Some formal design methods and programming languages emphasize data structures, rather than algorithms, as the key organizing factor in software design. Data structures can be used to organize the storage and retrieval of information stored in both main memory and secondary memory.[8]</p>',
+        chapter3: '<p>Data structures provide a means to manage large amounts of data efficiently for uses such as large databases and internet indexing services. Usually, efficient data structures are key to designing efficient algorithms. Some formal design methods and programming languages emphasize data structures, rather than algorithms, as the key organizing factor in software design. Data structures can be used to organize the storage and retrieval of information stored in both main memory and secondary memory.[8] </p>',
+      };
+      var blob = new Blob([paragraphs[chapter]], { type: 'text/html' });
+      iframe.src = URL.createObjectURL(blob);
+    }
+  </script>
+</body>
+</html>
